@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GDPR cookies</title>
+<link rel="stylesheet" href="gdrpCookie.css">
+
+<script type="application/javascript" charset="utf-8" src="gdprCookie_nonES6.min.js"></script>
+<script>
+
+
+var cookies=new gdprCookie();
+
+cookies.types=[{'type':'tracking','text':'Cookies Ανάλυσης','default':false,'detailsText':'Τα cookies αυτά συγκεντρώνουν πληροφορίες σχετικά με τη συμπεριφορά πλοήγησης των επισκεπτών στους ιστότοπούς μας. Μέσω αυτού είμαστε σε θέση να κάνουμε τη δομή, την πλοήγηση και το περιεχόμενο του ιστότοπου όσο το δυνατόν πιο φιλικά προς εσάς.'},
+{'type':'advertising','text':'Cookies Διαφήμισης','default':false,'detailsText':'Μέσω των cookies αυτών προσαρμόζεται ο ιστότοπός μας όσο το δυνατόν περισσότερο παρέχοντας σε κάθε επισκέπτη πληροφορίες που να τον αφορούν περισσότερο. Αυτό γίνεται όχι μόνο μέσω του περιεχομένου του ιστότοπού μας αλλά και μέσω των προβαλλόμενων διαφημίσεων.'}];//add as many as you need in the array. Type parameter must be unique
+cookies.cookie_type_mandatory_text='Cookies λειτουργικότητας';//this is the default mandatory cookie(actually this cookie) text next to the disabled checkbox
+cookies.cookie_type_mandatory_detailsText='Τα cookies αυτά είναι απαραίτητα γιατί επιτρέπουν την πλοήγηση στον ιστότοπό μας καθώς και τη χρήση των λειτουργιών του ιστότοπου.';
+cookies.expires='30';//the cookie expiry period in days default is 30
+cookies.position='bottom';//positioning of the container. Default is bottom. Possible values top,bottom,full. Full covers the hole page and the user must make a selection in order to continue using your site
+cookies.intro_text='Intro text <a href="#" target="_blank"><strong>cookies</strong></a> με σκοπό να σας προσφέρει την καλύτερη εμπειρία περιήγησης. Μπορείτε οποιαδήποτε στιγμή να προσαρμόσετε οι ίδιοι τις ρυθμίσεις cookies.';
+cookies.btn_settings_text='Ρυθμίσεις';
+cookies.btn_hide_settings_text='Απόκρυψη';
+cookies.btn_accept_text='Αποδοχή';
+cookies.settings_text='Χρησιμοποιούμε τα παρακάτω cookies προκειμένου να βελτιώσουμε την εμπειρία σας σε αυτόν τον ιστότοπο';
+cookies.check();
+
+//console.log(cookies.cookie);
+
+
+	</script>
+
+</head>
+
+<body style="background-color:red;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

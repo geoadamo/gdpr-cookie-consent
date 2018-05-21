@@ -1,0 +1,27 @@
+{
+  "name": "gdpr_cookies",
+  "version": "1.0.0",
+  "description": "A simple plugin to implement cookie concent on a site",
+  "main": "gdprCookie.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gdpr",
+    "cookies",
+    "concent"
+  ],
+  "author": "George Adamopoulos",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglify-es": "^1.0.1",
+    "gulp4": "^4.0.2"
+  }
+}
