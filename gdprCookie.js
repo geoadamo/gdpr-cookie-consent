@@ -4,6 +4,7 @@ class gdprCookie {
 
 
   constructor() {
+    this._title='Cookies';
     this._main_container;
     this._listeners_added=false;
     this._cookie;
@@ -74,7 +75,12 @@ class gdprCookie {
     this._class_prefix=`gdpr-cookie-${value}`;
       }
   }
-
+  get title() {
+    return this._title;
+  }
+  set title(value) {
+    this._title = value;
+  }
   get intro_text() {
     return this._intro_text;
   }
@@ -184,6 +190,12 @@ class gdprCookie {
 
         let innercont = document.createElement('div');
         innercont.classList.add(`gdpr-cookie-inner-container`);
+
+        let titl=document.createElement('h2');
+        titl.id='gdpr-cookie-title';
+        titl.setAttribute('align','center');
+        titl.innerHTML=this._title;
+        innercont.appendChild(titl);
 
         this.messagecont = document.createElement('div');
 
