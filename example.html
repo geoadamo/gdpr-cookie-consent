@@ -11,6 +11,8 @@
 
 var cookies=new gdprCookie();
 cookies.title="Cookies";
+cookies.cookie_path='/'; //the cookie path, default is '/'
+cookies.cookie_secure=true;//true or false, default is true
 cookies.types=[{'type':'tracking','text':'Cookies Ανάλυσης','default':false,'detailsText':'Τα cookies αυτά συγκεντρώνουν πληροφορίες σχετικά με τη συμπεριφορά πλοήγησης των επισκεπτών στους ιστότοπούς μας. Μέσω αυτού είμαστε σε θέση να κάνουμε τη δομή, την πλοήγηση και το περιεχόμενο του ιστότοπου όσο το δυνατόν πιο φιλικά προς εσάς.'},
 {'type':'advertising','text':'Cookies Διαφήμισης','default':false,'detailsText':'Μέσω των cookies αυτών προσαρμόζεται ο ιστότοπός μας όσο το δυνατόν περισσότερο παρέχοντας σε κάθε επισκέπτη πληροφορίες που να τον αφορούν περισσότερο. Αυτό γίνεται όχι μόνο μέσω του περιεχομένου του ιστότοπού μας αλλά και μέσω των προβαλλόμενων διαφημίσεων.'}];//add as many as you need in the array. Type parameter must be unique
 cookies.cookie_type_mandatory_text='Cookies λειτουργικότητας';//this is the default mandatory cookie(actually this cookie) text next to the disabled checkbox

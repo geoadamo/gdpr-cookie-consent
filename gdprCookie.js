@@ -5,6 +5,7 @@ class gdprCookie {
 
   constructor() {
     this._title='Cookies';
+    this._cookie_secure=true;
     this._main_container;
     this._listeners_added=false;
     this._cookie;
@@ -12,6 +13,7 @@ class gdprCookie {
 	  this._cookie_name='gdpr_cookie';
 	  this._expires=30; // a year
     this._btn_settings;
+    this._cookie_path='/';
     this._btn_settings_text;
     this._btn_hide_settings;
     this._btn_hide_settings_text;
@@ -131,7 +133,19 @@ class gdprCookie {
     this._btn_accept_text = value;
   }
 
+  get cookie_path() {
+    return this._cookie_path;
+  }
+  set cookie_path(value) {
+    this._cookie_path = value;
+  }
 
+  get cookie_secure() {
+    return this._cookie_secure;
+  }
+  set cookie_secure(value) {
+    this._cookie_secure = value;
+  }
 
   getCookie(name) {
     name = name + "=";
@@ -148,11 +162,15 @@ class gdprCookie {
     return undefined;
   }
 
-	setCookie(name=this._cookie_name, value, expirydays=this._expires) {
+	setCookie(name=this._cookie_name, value, expirydays=this._expires,path=this._cookie_path,secure=this._cookie_secure) {
 	 let d = new Date();
 	 d.setTime(d.getTime() + (expirydays*24*60*60*1000));
-	 let expires = "expires="+ d.toUTCString();
-	 document.cookie = name + "=" + JSON.stringify(value) + "; " + expires;
+   let expires = "expires="+ d.toUTCString();
+   let sec='';
+   if(secure){
+     sec=';secure';
+   }
+	 document.cookie = name + "=" + JSON.stringify(value) + "; " + expires+ "; path=" + path+sec;
 	}
 
     deleteCookie(name){
@@ -163,7 +181,7 @@ class gdprCookie {
     check(){
       this._cookie=this.getCookie(this._cookie_name);
 
-        if(!this._cookie || !this._cookie.accepted){
+        if(!this._cookie || (this._cookie && !this._cookie.accepted)){
           let cookieObj={'accepted':false};
           if(this._types.length>1){
             for(let i=1;i<this._types.length;i++){
