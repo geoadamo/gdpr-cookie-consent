@@ -13,23 +13,47 @@ var cookies=new gdprCookie();
 cookies.title="Cookies";
 cookies.cookie_path='/'; //the cookie path, default is '/'
 cookies.cookie_secure=true;//true or false. If ommited, the default functionality is to check the location protocol. If set, the location.protocol is overriden.
-cookies.types=[{'type':'tracking','text':'Cookies Ανάλυσης','default':false,'detailsText':'Τα cookies αυτά συγκεντρώνουν πληροφορίες σχετικά με τη συμπεριφορά πλοήγησης των επισκεπτών στους ιστότοπούς μας. Μέσω αυτού είμαστε σε θέση να κάνουμε τη δομή, την πλοήγηση και το περιεχόμενο του ιστότοπου όσο το δυνατόν πιο φιλικά προς εσάς.'},
-{'type':'advertising','text':'Cookies Διαφήμισης','default':false,'detailsText':'Μέσω των cookies αυτών προσαρμόζεται ο ιστότοπός μας όσο το δυνατόν περισσότερο παρέχοντας σε κάθε επισκέπτη πληροφορίες που να τον αφορούν περισσότερο. Αυτό γίνεται όχι μόνο μέσω του περιεχομένου του ιστότοπού μας αλλά και μέσω των προβαλλόμενων διαφημίσεων.'}];//add as many as you need in the array. Type parameter must be unique
+cookies.types=[{'type':'tracking','text':'Analysis Cookies','default':false,'detailsText':'Google Analytics'},
+{'type':'advertising','text':'Advertising Cookies','default':false,'detailsText':'Google remarketing, Facebook pixels etc'}];//add as many as you need in the array. Type parameter must be unique!!!
 cookies.cookie_type_mandatory_text='Cookies λειτουργικότητας';//this is the default mandatory cookie(actually this cookie) text next to the disabled checkbox
-cookies.cookie_type_mandatory_detailsText='Τα cookies αυτά είναι απαραίτητα γιατί επιτρέπουν την πλοήγηση στον ιστότοπό μας καθώς και τη χρήση των λειτουργιών του ιστότοπου.';
+cookies.cookie_type_mandatory_detailsText='These cookies are essential for the site operation (e.g PHPSESSID)';
 cookies.expires='30';//the cookie expiry period in days default is 30
-cookies.position='full';//positioning of the container. Default is bottom. Possible values top,bottom,full. Full covers the hole page and the user must make a selection in order to continue using your site
-cookies.intro_text='Intro text <a href="#" target="_blank"><strong>cookies</strong></a> με σκοπό να σας προσφέρει την καλύτερη εμπειρία περιήγησης. Μπορείτε οποιαδήποτε στιγμή να προσαρμόσετε οι ίδιοι τις ρυθμίσεις cookies.';
-cookies.btn_settings_text='Ρυθμίσεις';
-cookies.btn_hide_settings_text='Απόκρυψη';
-cookies.btn_accept_text='Αποδοχή';
-cookies.settings_text='Χρησιμοποιούμε τα παρακάτω cookies προκειμένου να βελτιώσουμε την εμπειρία σας σε αυτόν τον ιστότοπο';
+cookies.position='Bottom';//positioning of the container. Default is bottom. Possible values top,bottom,full. Full covers the hole page and the user must make a selection in order to continue using your site
+cookies.intro_text='We use <a href="#link-to-your-cookie-policy" target="_blank"><strong>cookies</strong></a> to provide you the best possible experience on our site. You can adjust the cookie settings anytime.';
+cookies.btn_settings_text='Settings';
+cookies.btn_hide_settings_text='Hide settings';
+cookies.btn_accept_text='Accept';
+cookies.settings_text='In order to provide you the best experience on our site, we use the following cookies';
 cookies.check();
-
-//console.log(cookies.cookie);
 
 
 	</script>
+
+
+<!--After initializing cookies you act based on the user preference -->
+
+
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=XX-XXXXXXXX-1"></script>
+
+
+
+ <script>
+ if(cookies){
+    window['ga-disable-XX-XXXXXXXX-1'] = !cookies.cookie.tracking; //disable or enable tracking based on user preference
+	}
+
+
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XX-XXXXXXXX-1');
+</script>
+
+
+
 
 </head>
 
