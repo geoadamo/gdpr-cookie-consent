@@ -5,7 +5,7 @@ class gdprCookie {
 
   constructor() {
     this._title='Cookies';
-    this._cookie_secure=true;
+    this._cookie_secure=2;
     this._main_container;
     this._listeners_added=false;
     this._cookie;
@@ -162,14 +162,24 @@ class gdprCookie {
     return undefined;
   }
 
-	setCookie(name=this._cookie_name, value, expirydays=this._expires,path=this._cookie_path,secure=this._cookie_secure) {
+	setCookie(name=this._cookie_name, value, expirydays=this._expires,path=this._cookie_path) {
 	 let d = new Date();
 	 d.setTime(d.getTime() + (expirydays*24*60*60*1000));
    let expires = "expires="+ d.toUTCString();
    let sec='';
-   if(secure){
-     sec=';secure';
-   }
+		
+		if(this._cookie_secure==2){
+			if(location.protocol){
+				if (location.protocol == 'https:'){
+				  sec=';secure';
+				}
+			}
+		}else if(this._cookie_secure==true){
+			sec=';secure';
+		}
+		
+		
+   
 	 document.cookie = name + "=" + JSON.stringify(value) + "; " + expires+ "; path=" + path+sec;
 	}
 
