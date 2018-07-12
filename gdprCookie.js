@@ -167,7 +167,7 @@ class gdprCookie {
 	 d.setTime(d.getTime() + (expirydays*24*60*60*1000));
    let expires = "expires="+ d.toUTCString();
    let sec='';
-		
+
 		if(this._cookie_secure==2){
 			if(location.protocol){
 				if (location.protocol == 'https:'){
@@ -177,9 +177,9 @@ class gdprCookie {
 		}else if(this._cookie_secure==true){
 			sec=';secure';
 		}
-		
-		
-   
+
+
+
 	 document.cookie = name + "=" + JSON.stringify(value) + "; " + expires+ "; path=" + path+sec;
 	}
 
@@ -390,8 +390,12 @@ class gdprCookie {
 
 
         this._main_container.appendChild(innercont);
+        //document.body.appendChild(this._main_container);
+        if (document.body.firstChild){
+          document.body.insertBefore(this._main_container, document.body.firstChild);
+        }else{
         document.body.appendChild(this._main_container);
-
+        }
         this.showcookie();
 
     }

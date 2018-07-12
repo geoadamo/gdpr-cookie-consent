@@ -88,3 +88,21 @@ padding:0 10px;
     .details-txt{
       font-size: 0.8em;
     }
+
+
+    @media (max-width: 768px) {
+
+
+      .gdpr-cookie-container,.gdpr-cookie-top-container,.gdpr-cookie-bottom-container.gdpr-cookie-full-container{
+      position: relative;
+      }
+      .gdpr-cookie-inner-container{
+        font-size: 12px;
+      }
+      .gdpr-cookie-inner-container h2{
+        font-size:18px;
+      }
+
+
+
+    }
