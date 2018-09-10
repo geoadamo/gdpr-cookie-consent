@@ -9,6 +9,7 @@ class gdprCookie {
     this._main_container;
     this._listeners_added=false;
     this._cookie;
+    this._from_settings_button=false;
     this._types=new Array({'type':'mandatory','text':'Cookies λειτουργικότητας','default':true,'detailsText':'Τα cookies αυτά είναι απαραίτητα γιατί επιτρέπουν την πλοήγηση στον ιστότοπό μας καθώς και τη χρήση των λειτουργιών του ιστότοπου.'});
 	  this._cookie_name='gdpr_cookie';
 	  this._expires=30; // a year
@@ -247,6 +248,10 @@ class gdprCookie {
               cell.setAttribute('align','left');
               cell.innerHTML=this._intro_text;
               }else{
+                this._btn_accept=document.createElement('button');
+                this._btn_accept.className='gdpr-accept-btn';
+                this._btn_accept.innerText=this._btn_accept_text;
+               cell.appendChild(this._btn_accept);
 
                  this._btn_settings=document.createElement('button');
                  this._btn_settings.id='gdpr-show-cookie-settings';
@@ -349,6 +354,7 @@ class gdprCookie {
 
 
                 this._btn_accept1=document.createElement('button');
+                this._btn_accept1.className='gdpr-accept-btn';
                 this._btn_accept1.id='gdpr-accept-btn';
                 this._btn_accept1.innerText=this._btn_accept_text;
                cell.appendChild(this._btn_accept1);
@@ -374,9 +380,20 @@ class gdprCookie {
 
 
 
+        //gdpr_settings_button
 
+        if(document.getElementsByClassName('gdpr_settings_button').length){
 
+          document.getElementsByClassName('gdpr_settings_button')[0].addEventListener('click', (e) => {
+            e.preventDefault();
+            this._from_settings_button=true;
+            this.settingscont.style.display='block';
+            this.messagecont.style.display='none';
+            this._main_container.style.display='block';
 
+          });
+
+        }
 
 
 
@@ -411,7 +428,22 @@ class gdprCookie {
     }
 
 
+    accept(){
+      this.settingscont.style.display='block';
+      this.messagecont.style.display='none';
+      this._cookie.accepted=true;
+    if(this._types.length>1){
+      for(let i=1;i<this._types.length;i++){
+        this._cookie[`${this._types[i].type}`]=document.getElementById(`gdpr-cookie-checkbox-${this._types[i].type}`).checked;
+      }
+    }
+      this.setCookie(this._cookie_name, this._cookie,this._expires);
 
+
+
+
+      this._main_container.style.display='none';
+    }
 
 
     addlisteners() {
@@ -421,6 +453,10 @@ class gdprCookie {
       this._btn_hide_settings.addEventListener('click', (e) => {
         this.settingscont.style.display='none';
         this.messagecont.style.display='block';
+        if(this._from_settings_button){
+          this._from_settings_button=false;
+          this._main_container.style.display='none';
+        }
 
       });
 
@@ -431,24 +467,15 @@ class gdprCookie {
       });
 
 
-      this._btn_accept1.addEventListener('click', (e) => {
-        this.settingscont.style.display='block';
-        this.messagecont.style.display='none';
-        this._cookie.accepted=true;
-      if(this._types.length>1){
-        for(let i=1;i<this._types.length;i++){
-          this._cookie[`${this._types[i].type}`]=document.getElementById(`gdpr-cookie-checkbox-${this._types[i].type}`).checked;
-        }
-      }
-        this.setCookie(this._cookie_name, this._cookie,this._expires);
-
-
-
-
-        this._main_container.style.display='none';
+     this._btn_accept1.addEventListener('click', (e) => {
+       this.accept();
 
       });
 
+      this._btn_accept.addEventListener('click', (e) => {
+        this.accept();
+
+       });
 
 
 
